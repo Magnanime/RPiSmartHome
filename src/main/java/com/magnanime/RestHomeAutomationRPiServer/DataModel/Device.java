@@ -16,5 +16,5 @@ public class Device implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "devicetype")
-    private long type;
+    private Integer type;
 }

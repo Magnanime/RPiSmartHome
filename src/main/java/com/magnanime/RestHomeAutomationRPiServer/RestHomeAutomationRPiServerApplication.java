@@ -11,7 +11,7 @@ public class RestHomeAutomationRPiServerApplication {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		SpringApplication.run(RestHomeAutomationRPiServerApplication.class, args);
-		SI7021Controller.makeMeasurements();
-		System.out.println(SI7021Controller.getTemperatureC());
+		//SI7021Controller.makeMeasurements();
+		//System.out.println(SI7021Controller.getTemperatureC());
 	}
 }

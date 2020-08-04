@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryRestResource(path = "devices", collectionResourceRel = "devices", itemResourceRel = "Device")
 public interface DeviceRopository extends JpaRepository<Device, Long> {
-    Device getDeviceById(Long id);
+    Device getDeviceById(String id);
 }

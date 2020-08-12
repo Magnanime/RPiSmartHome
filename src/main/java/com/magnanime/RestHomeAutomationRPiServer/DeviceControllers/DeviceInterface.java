@@ -1,8 +1,7 @@
 package com.magnanime.RestHomeAutomationRPiServer.DeviceControllers;
 
-import com.magnanime.RestHomeAutomationRPiServer.DeviceControllers.Measurements.Measurement;
-import org.json.JSONObject;
+import com.magnanime.RestHomeAutomationRPiServer.DataModel.Measurements.Measurement;
 
 public interface DeviceInterface {
-    public Measurement getData();
+    Measurement getData(Integer deviceId);
 }

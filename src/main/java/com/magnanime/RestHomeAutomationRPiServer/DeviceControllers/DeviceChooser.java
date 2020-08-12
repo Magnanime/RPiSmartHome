@@ -1,17 +1,17 @@
 package com.magnanime.RestHomeAutomationRPiServer.DeviceControllers;
 
-import com.magnanime.RestHomeAutomationRPiServer.DataModel.Device;
-import com.magnanime.RestHomeAutomationRPiServer.Repositories.DeviceRopository;
-import com.pi4j.io.i2c.I2CFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
+@Component
 public class DeviceChooser {
 
-    public DeviceInterface determineDevice(Integer type) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
+    @Autowired
+    private SI7021Controller controller;
+
+    public DeviceInterface determineDevice(Integer type) {
         if (type == 1){
-            return new SI7021Controller();
+            return controller;
         }
         return null;
     }

@@ -1,17 +1,14 @@
 package com.magnanime.RestHomeAutomationRPiServer;
 
-import com.magnanime.RestHomeAutomationRPiServer.DeviceControllers.SI7021Controller;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.io.IOException;
-
+@EnableScheduling
 @SpringBootApplication
 public class RestHomeAutomationRPiServerApplication {
 
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) {
 		SpringApplication.run(RestHomeAutomationRPiServerApplication.class, args);
-		//SI7021Controller.makeMeasurements();
-		//System.out.println(SI7021Controller.getTemperatureC());
 	}
 }

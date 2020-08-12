@@ -16,5 +16,7 @@ public class Device implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "devicetype")
-    private Integer type;
+    private Integer deviceType;
+    @Column(name = "channel")
+    private Integer channel;
 }

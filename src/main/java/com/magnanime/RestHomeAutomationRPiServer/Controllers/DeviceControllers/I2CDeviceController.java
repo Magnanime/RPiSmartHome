@@ -1,4 +1,4 @@
-package com.magnanime.RestHomeAutomationRPiServer.DeviceControllers;
+package com.magnanime.RestHomeAutomationRPiServer.Controllers.DeviceControllers;
 
 import com.magnanime.RestHomeAutomationRPiServer.DataModel.UniversalDevice;
 import com.pi4j.io.i2c.I2CBus;
@@ -6,7 +6,6 @@ import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class I2CDeviceController {
@@ -16,7 +15,7 @@ public class I2CDeviceController {
     private int address;
     private int requestCommand;
     private int length;
-    private Integer type;
+    private UniversalDevice universalDevice;
 
     private I2CDevice device;
 
@@ -25,19 +24,21 @@ public class I2CDeviceController {
             bus = I2CFactory.getInstance(I2CBus.BUS_1);
         }
 
+        this.universalDevice = uDevice;
         this.address = Integer.decode(uDevice.getAddress());
         this.requestCommand = Integer.decode(uDevice.getCommand());
-        this.type = uDevice.getType();
         this.length = uDevice.getLength();
 
         device = bus.getDevice(address);
     }
 
-    public HashMap<Integer, byte[]> getData() throws IOException {
-        HashMap<Integer, byte[]> retMap = new HashMap<Integer, byte[]>();
+    public HashMap<UniversalDevice, byte[]> getData() throws IOException, InterruptedException {
+        HashMap<UniversalDevice, byte[]> retMap = new HashMap<UniversalDevice, byte[]>();
+        device.write((byte) this.requestCommand);
+        Thread.sleep(300);
         byte[] data = new byte[length];
         device.read(data, 0, length);
-        retMap.put(this.type, data);
+        retMap.put(this.universalDevice, data);
         return retMap;
     }
 }

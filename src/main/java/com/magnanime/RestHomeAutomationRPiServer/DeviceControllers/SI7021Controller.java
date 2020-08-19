@@ -39,6 +39,7 @@ public class SI7021Controller implements DeviceInterface {
         makeMeasurements();
     }
 
+
     public static BigDecimal getLastTemperatureC() {
         return lastTemperatureC;
     }

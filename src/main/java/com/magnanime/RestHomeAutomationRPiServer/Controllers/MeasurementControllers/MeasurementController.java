@@ -28,7 +28,7 @@ public class MeasurementController {
             //Temperature sensor
             case 1:
                 universalMeasurement.setTimestamp(timestamp = ZonedDateTime.now());
-                universalMeasurement.setDeviceId(universalDevice.getId());
+                universalMeasurement.setDevice(universalDevice);
                 universalMeasurement.setValue(String.valueOf(BigDecimal.valueOf((((((
                            measurement.get(universalDevice)[0] & 0xFF) * 256)
                         + (measurement.get(universalDevice)[1] & 0xFF)) * 175.72) / 65536.0) - 46.85)

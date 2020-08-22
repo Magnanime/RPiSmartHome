@@ -8,10 +8,7 @@ import com.magnanime.RestHomeAutomationRPiServer.Repositories.UniversalMeasureme
 import com.magnanime.RestHomeAutomationRPiServer.Repositories.UniversalDeviceRepository;
 import com.pi4j.io.i2c.I2CFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -28,13 +25,9 @@ public class DeviceWebController {
 
 
     @GetMapping("/measurement")
-    public UniversalMeasurement getMeasurement(@PathVariable(value = "id") long id) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
+    public UniversalMeasurement getMeasurement(@RequestParam Long id) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
         //Find device by if ()
-        UniversalDevice device = deviceRepository.findById(id).get();
-        I2CDeviceController ctr = new I2CDeviceController(device);
-        MeasurementController manager = new MeasurementController(ctr.getData());
-        measurementRepository.save(manager.getData());
-        return manager.getData();
+        return measurementRepository.findTopByDeviceOrderByIdDesc(deviceRepository.findById(id).get());
     }
 
     //@GetMapping("/history")

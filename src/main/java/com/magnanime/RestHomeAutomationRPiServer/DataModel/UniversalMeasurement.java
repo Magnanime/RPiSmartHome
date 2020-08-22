@@ -1,5 +1,6 @@
 package com.magnanime.RestHomeAutomationRPiServer.DataModel;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,8 +17,11 @@ public class UniversalMeasurement {
     private Long id;
     @Column(name = "timestamp")
     private ZonedDateTime timestamp;
-    @Column(name = "deviceid")
-    private Long deviceId;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "deviceid")
+    private UniversalDevice device;
     @Column(name = "value")
     private String value;
+
 }
